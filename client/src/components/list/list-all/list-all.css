@@ -1,0 +1,33 @@
+.table {
+    text-align: center;
+}
+
+.list-table,
+.list-table th,
+.list-table td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.list-table {
+    width: 50%;
+    table-layout: fixed;
+}
+
+.list-table th, td {
+    padding: 5px;
+}
+
+.list-table th {
+    color: white;
+    background-color: black;
+}
+
+.list-table tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+.list-table tr:nth-child(odd) {
+    background-color: #fff;
+}

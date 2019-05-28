@@ -1,0 +1,79 @@
+.home {
+    text-align: center;
+}
+
+.home ul.books {
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.home li.book {
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.home img {
+    text-align: center;
+    width: 99%;
+    height: 370px;
+    border: 2px solid rgb(221, 221, 221);
+    border-radius: 10px;
+}
+
+button {
+    width: 90%;
+    border: 2px solid dodgerblue;
+    text-align: center;
+    font-size: 14px;
+    background: dodgerblue;
+    color: white;
+    border-radius: 7px;
+    margin-top: 20px;
+    margin-bottom: 3px;
+    box-shadow: 2px 2px 0 0 rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: dodgerblue;
+    background: transparent;
+}
+
+#delete {
+    border: 2px solid red;
+    background: red;
+}
+
+#delete:hover {
+    color: red;
+    background: transparent;
+}
+
+#edit {
+    border: 2px solid orange;
+    background: orange;
+}
+
+#edit:hover {
+    color: orange;
+    background: transparent;
+}
+
+.inner {
+    display: inline-block;
+}
+
+.list-select {
+    margin-top: 40px;
+    width: 20%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+}

@@ -1,0 +1,35 @@
+.form form {
+    display: grid;
+    width: 25%;
+    margin: 0 auto;
+}
+  
+.form input, textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+  
+.form input[type=number] {
+    width: 93%;
+}
+  
+.form textarea {
+    height: 150px;
+}
+  
+.form button{
+    width: 25%;
+    border: 2px solid dodgerblue;
+    text-align: center;  
+    font-size: 14px;
+    background: dodgerblue;
+    color: white;
+    border-radius: 7px;
+    margin: 20px auto 20px;
+    box-shadow: 2px 2px 0 0 rgba(0,0,0,0.5);
+}
+  
+.form button:hover{
+    color: dodgerblue;
+    background: transparent;
+}
