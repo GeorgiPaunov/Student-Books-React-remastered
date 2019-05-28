@@ -15,22 +15,6 @@ class ListSelect extends Component {
         this.giveListId = this.giveListId.bind(this);
     }
 
-    static listServise = new ListService();
-
-    componentWillMount() {
-        const token = sessionStorage.getItem("token");
-
-        ListSelect.listServise.getMyLists(token)
-            .then(data => {
-                if (data.lists) {
-                    this.setState({ lists: data.lists });
-                } else {
-                    toast.error(data.message);
-                }
-            })
-            .catch(err => toast.error(err));
-    }
-
     handleChange(evt) {
         this.setState({
             value: evt.target.value
@@ -50,6 +34,22 @@ class ListSelect extends Component {
                 }
             </select>
         );
+    }
+    
+    static listServise = new ListService();
+
+    componentDidMount() {
+        const token = sessionStorage.getItem("token");
+
+        ListSelect.listServise.getMyLists(token)
+            .then(data => {
+                if (data.lists) {
+                    this.setState({ lists: data.lists });
+                } else {
+                    toast.error(data.message);
+                }
+            })
+            .catch(err => toast.error(err));
     }
 }
 

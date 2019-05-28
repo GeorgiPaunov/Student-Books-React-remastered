@@ -8,28 +8,11 @@ class BookDelete extends Component {
         super(props);
 
         this.state = {
-            book: {}
+            book: {},
+            isLoading: true
         };
 
         this.handleForm = this.handleForm.bind(this);
-    }
-
-    static bookService = new BookService();
-
-    componentWillMount() {
-        const token = sessionStorage.getItem("token");
-        const id = this.props.match.params.id;
-
-        BookDelete.bookService.getDetails(id, token)
-            .then(data => {
-                if (data.book) {
-                    this.setState({ book: data.book });
-                } else {
-                    this.props.history.push("/");
-                    toast.error(data.message);
-                }
-            })
-            .catch(err => toast.error(err));
     }
 
     handleForm(evt) {
@@ -51,6 +34,10 @@ class BookDelete extends Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return <h2>Loading...</h2>;
+        }
+
         const book = this.state.book;
 
         return (
@@ -133,6 +120,24 @@ class BookDelete extends Component {
             </form>
         </div>
         );
+    }
+
+    static bookService = new BookService();
+
+    componentDidMount() {
+        const token = sessionStorage.getItem("token");
+        const id = this.props.match.params.id;
+
+        BookDelete.bookService.getDetails(id, token)
+            .then(data => {
+                if (data.book) {
+                    this.setState({ book: data.book, isLoading: false });
+                } else {
+                    this.props.history.push("/");
+                    toast.error(data.message);
+                }
+            })
+            .catch(err => toast.error(err));
     }
 }
 

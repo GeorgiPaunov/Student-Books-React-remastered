@@ -8,6 +8,7 @@ class BookEdit extends Component {
         super(props);
 
         this.state = {
+            isLoading: true,
             title: "",
             grade: "",
             subject: "",
@@ -21,36 +22,6 @@ class BookEdit extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleForm = this.handleForm.bind(this);
-    }
-
-    static bookService = new BookService();
-
-    componentWillMount() {
-        const token = sessionStorage.getItem("token");
-        const id = this.props.match.params.id;
-
-        BookEdit.bookService.getDetails(id, token)
-            .then(data => {
-                if (data.book) {
-                    const book = data.book;
-                    
-                    this.setState({
-                        title: book.title,
-                        grade: book.grade,
-                        subject: book.subject,
-                        author: book.author,
-                        publisher: book.publisher,
-                        year: book.year,
-                        description: book.description,
-                        imageUrl: book.imageUrl,
-                        price: book.price
-                    });
-                } else {
-                    this.props.history.push("/");
-                    toast.error(data.message);
-                }
-            })
-            .catch(err => toast.error(err));
     }
 
     handleChange(evt) {
@@ -80,6 +51,10 @@ class BookEdit extends Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return <h2>Loading...</h2>;
+        }
+
         return(
             <div className="form">
                 <h1>Edit Student Book</h1>
@@ -160,6 +135,37 @@ class BookEdit extends Component {
                 </form>
             </div>
         );
+    }
+
+    static bookService = new BookService();
+
+    componentDidMount() {
+        const token = sessionStorage.getItem("token");
+        const id = this.props.match.params.id;
+
+        BookEdit.bookService.getDetails(id, token)
+            .then(data => {
+                if (data.book) {
+                    const book = data.book;
+                    
+                    this.setState({
+                        isLoading: false,
+                        title: book.title,
+                        grade: book.grade,
+                        subject: book.subject,
+                        author: book.author,
+                        publisher: book.publisher,
+                        year: book.year,
+                        description: book.description,
+                        imageUrl: book.imageUrl,
+                        price: book.price
+                    });
+                } else {
+                    this.props.history.push("/");
+                    toast.error(data.message);
+                }
+            })
+            .catch(err => toast.error(err));
     }
 }
 

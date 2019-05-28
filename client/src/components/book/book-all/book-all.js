@@ -17,7 +17,7 @@ class BookAll extends Component {
 
     render() {
         if (this.state.isLoading) {
-            return <h2>Loading...</h2>
+            return <h2>Loading...</h2>;
         }
 
         const { books } = this.state;
